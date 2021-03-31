@@ -141,15 +141,16 @@ class CreateOrder(graphene.Mutation):
         try:
             user = User.objects.get(pk=input.customer_id)
         except User.DoesNotExist:
-            error = 'Erro ao criar nova ordem. Não há cliente com esse id.'
+            error = f'Erro ao criar nova ordem. Não há cliente com id={input.customer_id}.'
             return CreateOrder(ok=False, error=error)
         
         quantity = []
         products = []
         for product_input in input.products:
-            product = Product.objects.get(pk=product_input.id)
-            if product is None:
-                error = f'Erro ao criar nova ordem. Não existe produto com o id={product_input.id}'
+            try:
+                product = Product.objects.get(pk=product_input.id)
+            except Product.DoesNotExist:
+                error = f'Erro ao criar nova ordem. Não existe produto com o id={product_input.id}.'
                 return CreateOrder(ok=False, error=error)
             products.append(product)
             quantity.append(product_input.quantity)    

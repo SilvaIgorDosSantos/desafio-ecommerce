@@ -87,8 +87,6 @@ class OrderInput(graphene.InputObjectType):
     products = graphene.List(ProductInput)
 
 class CreateCustomer(graphene.Mutation):
-    username = graphene.String()
-    email = graphene.String()
     token = graphene.String()
     ok = graphene.Boolean()
     error = graphene.String()
@@ -106,11 +104,7 @@ class CreateCustomer(graphene.Mutation):
             user.save()
             token = get_token(user)
 
-        return CreateCustomer(
-            username = input.username,
-            email = input.email,
-            token = token,
-            ok = True
+        return CreateCustomer(token = token, ok = True
         )
 
 class CreateProduct(graphene.Mutation):

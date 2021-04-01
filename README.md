@@ -2,6 +2,28 @@
 
 Nesse projeto foi desenvolvida uma GraphQL API com Django responsável por uma pequena parte do fluxo de um *ecommerce* com o cadastro de clientes, produtos e usuários.
 
+## Utilização
+
+Para utilização deste projeto, deve-se seguir os seguintes passos:
+
+Clonar o repositório
+    
+    git clone https://github.com/SilvaIgorDosSantos/desafio-ecommerce
+    cd desafio-ecommerce
+
+Instalar os pacotes listados em **requirements.txt**. Eles podem ser instalados via pip:
+
+    pip intall -r requirements.txt
+
+Realizar a migração da base de dados:
+
+    python manage.py makemigrations
+    python manage.py migrate
+
+E por último, para executar o servidor localmente:
+
+    python manage.py runserver
+
 ## Queries
 
 As seguintes queries foram desenvolvidas para obter os dados referentes ao clientes, produtos e ordens.
